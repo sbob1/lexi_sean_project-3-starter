@@ -6,6 +6,9 @@
 
 #include "pzip.h"
 
+int char_frequency[26] = {0};
+
+
 /**
  * pzip() - zip an array of characters in parallel
  *
@@ -22,10 +25,23 @@
  * NOTE: All outputs are already allocated. DO NOT MALLOC or REASSIGN THEM !!!
  *
  */
+struct inputs {
+	char *chars;
+	int input_size, num_threads, *char_count;
+}
+
 void pzip(int n_threads, char *input_chars, int input_chars_size,
 	  struct zipped_char *zipped_chars, int *zipped_chars_count,
 	  int *char_frequency)
 {
+	pthread_t tid[n_threads];
+	int chars_in_thread = input_chars_size / n_threads;
+	int size = malloc(sizeof(int) * n_threads);
+	int counter = 0;
+	while(counter < n_threads) {
+		struct inputs *args = (struct inputs *)malloc(sizeof(struct inputs));
+	}
+
 	printf ("TODO: Start from here!\n");
 	exit(1);
 }
